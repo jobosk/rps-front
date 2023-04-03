@@ -14,6 +14,6 @@ Run `npm start` (or `ng serve`) to run the project.
 
 ## Testing
 
-Run `npm test` (or `ng test`) to execute the unit tests via [Karma](https://karma-runner.github.io).
+> **Note:** Among these tests there is a contract test that publishes a consumer pact in a local Pact Broker, so before running this particular test, one must follow [the instructions](https://github.com/jobosk/rps-service#testing) to setup the local testing environment from the back-end repository.
 
-> **Note:** This includes a contract test that publishes a consumer pact in a local Pact Broker, so before running this test, one must follow [the instructions in the back-end repository](https://github.com/jobosk/rps-service#testing) to setup the local testing environment.
+Run `npm test` (or `ng test`) to execute the unit tests via [Karma](https://karma-runner.github.io).
