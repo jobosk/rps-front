@@ -1,9 +1,9 @@
 <div class="container">
     <h3>Pick your next move...</h3>
     <div class="buttons">
-        <button mat-flat-button color="primary" (click)="playRock()">Rock</button>
-        <button mat-flat-button color="primary" (click)="playPaper()">Paper</button>
-        <button mat-flat-button color="primary" (click)="playScissors()">Scissors</button>
+        <button mat-button color="primary" (click)="playRock()" style="background: url('../assets/images/rock.png'); background-size: contain"></button>
+        <button mat-button color="primary" (click)="playPaper()"style="background: url('../assets/images/paper.png'); background-size: contain"></button>
+        <button mat-button color="primary" (click)="playScissors()"style="background: url('../assets/images/scissors.png'); background-size: contain"></button>
     </div>
     <div class="message">
         <p *ngIf="result">{{humanizeResult(result.outcome)}} Machine played {{result.moveByMachine}}</p>
