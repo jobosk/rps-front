@@ -18,9 +18,7 @@ export class PlayComponent {
 
   playRock(): void {
     this.service.playMove(MoveCodeEnum.ROCK).subscribe(response => {
-      console.log('User played ROCK');
       this.service.revealPlay().subscribe(response => {
-        console.log('Play revealed', response);
         this.result = response;
       });
     });
@@ -28,9 +26,7 @@ export class PlayComponent {
 
   playPaper(): void {
     this.service.playMove(MoveCodeEnum.PAPER).subscribe(response => {
-      console.log('User played PAPER');
       this.service.revealPlay().subscribe(response => {
-        console.log('Play revealed', response);
         this.result = response;
       });
     });
@@ -38,9 +34,7 @@ export class PlayComponent {
 
   playScissors(): void {
     this.service.playMove(MoveCodeEnum.SCISSORS).subscribe(response => {
-      console.log('User played SCISSORS');
       this.service.revealPlay().subscribe(response => {
-        console.log('Play revealed', response);
         this.result = response;
       });
     });
