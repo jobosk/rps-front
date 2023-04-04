@@ -20,7 +20,7 @@ Run `npm start` (or `ng serve`) to run the project.
 
 Run `npm test` (or `ng test`) to execute the unit tests with [Jest](https://jestjs.io).
 
-Once the consumer's contract test is executed, th contract itself will be stored as a JSON file in the /pacts directory.\
+Once the consumer's contract test is executed, the contract itself will be stored as a JSON file in the /pacts directory.\
 To publish the contract in the local broker, so the back-end contract tests can be executed, the following command must be run:
 ```
 npm run publish-pacts
