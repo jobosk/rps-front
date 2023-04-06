@@ -1,2 +1,3 @@
 <button class="play-button" mat-button color="primary" (click)="play()"
-    style="background: url({{this.iconFilePath}}); background-size: contain"></button>
+    style="background: url({{this.iconFilePath}}); background-size: contain"
+    disabled="{{enabled === undefined ? false : !enabled}}"></button>

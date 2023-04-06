@@ -6,14 +6,10 @@
         <button mat-button color="primary" (click)="playPaper()"style="background: url('../assets/images/paper.png'); background-size: contain"></button>
         <button mat-button color="primary" (click)="playScissors()"style="background: url('../assets/images/scissors.png'); background-size: contain"></button>
         -->
-        <app-playbutton move="ROCK" iconFilePath="../assets/images/rock.png" [afterMove]=afterMove />
-        <app-playbutton move="PAPER" iconFilePath="../assets/images/paper.png" [afterMove]=afterMove />
-        <app-playbutton move="SCISSORS" iconFilePath="../assets/images/scissors.png" [afterMove]=afterMove />
-    </div>
-    <div *ngIf="loading">
-        <mat-spinner></mat-spinner>
-    </div>
-    <div *ngIf="!loading" class="message">
-        <p *ngIf="result">{{humanizeResult(result.outcome)}} Machine played {{result.moveByMachine}}</p>
+        <app-playbutton move="ROCK" iconFilePath="../assets/images/rock.png" [afterMove]=afterMove [enabled]=enabled />
+        <app-playbutton move="PAPER" iconFilePath="../assets/images/paper.png" [afterMove]=afterMove
+            [enabled]=enabled />
+        <app-playbutton move="SCISSORS" iconFilePath="../assets/images/scissors.png" [afterMove]=afterMove
+            [enabled]=enabled />
     </div>
 </div>

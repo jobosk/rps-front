@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { PlayService } from '../play.service';
-import { MoveCodeEnum } from '../model/moveCodeEnum';
+import { MatDialog } from '@angular/material/dialog';
+import { ResolutionComponent } from '../resolution/resolution.component';
 import { PlayResult } from '../model/playResult';
-import { OutcomeCodeEnum } from '../model/outcomeCodeEnum';
 
 @Component({
   selector: 'app-play',
@@ -11,29 +11,24 @@ import { OutcomeCodeEnum } from '../model/outcomeCodeEnum';
 })
 export class PlayComponent {
 
-  loading = false;
-  result?: PlayResult;
+  enabled?: boolean;
 
-  constructor(private service: PlayService) {
+  constructor(private service: PlayService, private dialog: MatDialog) {
+  }
+
+  openDialog(playResult: PlayResult): void {
+    this.enabled = false;
+    const dialogRef = this.dialog.open(ResolutionComponent, {
+      data: playResult
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.enabled = true;
+    });
   }
 
   afterMove = () => {
     this.service.revealPlay().subscribe(response => {
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = false
-        this.result = response;
-      }, 1000);
+      this.openDialog(response);
     });
-  }
-
-  humanizeResult(result: string): string {
-    if (result === OutcomeCodeEnum.USERWINS) {
-      return 'You win!';
-    }
-    if (result === OutcomeCodeEnum.MACHINEWINS) {
-      return 'You lose...';
-    }
-    return 'It\'s a tie.';
   }
 }

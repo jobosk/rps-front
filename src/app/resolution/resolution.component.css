@@ -1,0 +1,25 @@
+.popup {
+  display: flex;
+  justify-content: center;
+  margin: 25px 25px 25px 25px;
+}
+
+.popup .message {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 300px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.message h1 {
+  font-size: 3em;
+}
+
+.message p {
+  font-size: 1.5em;
+}
+
+.message button {
+  margin-top: 20px;
+  float: right;
+}

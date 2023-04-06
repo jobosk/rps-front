@@ -9,12 +9,16 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PlaybuttonComponent } from './playbutton/playbutton.component';
+import { ResolutionComponent } from './resolution/resolution.component'
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayComponent,
     PlaybuttonComponent,
+    ResolutionComponent
   ],
   imports: [
     BrowserModule,
@@ -22,9 +26,13 @@ import { PlaybuttonComponent } from './playbutton/playbutton.component';
     HttpClientModule,
     NoopAnimationsModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,6 +18,9 @@ export class PlaybuttonComponent {
   @Input()
   afterMove?: Function;
 
+  @Input()
+  enabled?: boolean;
+
   constructor(private service: PlayService) {
   }
 
