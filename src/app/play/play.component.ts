@@ -11,32 +11,19 @@ import { OutcomeCodeEnum } from '../model/outcomeCodeEnum';
 })
 export class PlayComponent {
 
+  loading = false;
   result?: PlayResult;
 
   constructor(private service: PlayService) {
   }
 
-  playRock(): void {
-    this.service.playMove(MoveCodeEnum.ROCK).subscribe(response => {
-      this.service.revealPlay().subscribe(response => {
+  afterMove = () => {
+    this.service.revealPlay().subscribe(response => {
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false
         this.result = response;
-      });
-    });
-  }
-
-  playPaper(): void {
-    this.service.playMove(MoveCodeEnum.PAPER).subscribe(response => {
-      this.service.revealPlay().subscribe(response => {
-        this.result = response;
-      });
-    });
-  }
-
-  playScissors(): void {
-    this.service.playMove(MoveCodeEnum.SCISSORS).subscribe(response => {
-      this.service.revealPlay().subscribe(response => {
-        this.result = response;
-      });
+      }, 1000);
     });
   }
 

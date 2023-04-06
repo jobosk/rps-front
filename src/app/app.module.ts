@@ -6,19 +6,23 @@ import { AppComponent } from './app.component';
 import { PlayComponent } from './play/play.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button'
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PlaybuttonComponent } from './playbutton/playbutton.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayComponent
+    PlayComponent,
+    PlaybuttonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
