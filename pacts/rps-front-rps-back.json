@@ -1,0 +1,58 @@
+{
+  "consumer": {
+    "name": "rps-front"
+  },
+  "interactions": [
+    {
+      "description": "a user request to pick a move for the next play",
+      "providerState": "user 00000000-0000-0000-0000-000000000000 doesn't have active plays",
+      "request": {
+        "method": "POST",
+        "path": "/play/ROCK"
+      },
+      "response": {
+        "status": 201
+      }
+    },
+    {
+      "description": "a request to resolve the current ongoing play",
+      "providerState": "user 00000000-0000-0000-0000-000000000000 previously selected rock",
+      "request": {
+        "method": "GET",
+        "path": "/play/reveal"
+      },
+      "response": {
+        "body": [
+          {
+            "moveByUser": "ROCK"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type",
+            "min": 1
+          }
+        },
+        "status": 201
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "11.0.2"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  },
+  "provider": {
+    "name": "rps-back"
+  }
+}

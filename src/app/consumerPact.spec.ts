@@ -18,10 +18,7 @@ describe('consumer contract testing', () => {
         timeout: 100000
     });
 
-    beforeAll(() => {
-        mockProvider.setup()
-            .then(() => environment.apiUrl = mockProvider.mockService.baseUrl)
-    })
+    beforeAll(() => mockProvider.setup())
 
     beforeEach(() => TestBed.configureTestingModule({
         imports: [HttpClientModule],
@@ -49,6 +46,7 @@ describe('consumer contract testing', () => {
         afterEach(() => mockProvider.verify())
 
         it('should accept the selected move by the user', (done) => {
+            environment.apiUrl = mockProvider.mockService.baseUrl;
             let playService = TestBed.inject(PlayService);
             playService.playMove(MoveCodeEnum.ROCK)
                 .subscribe(response => {
@@ -82,6 +80,7 @@ describe('consumer contract testing', () => {
         afterEach(() => mockProvider.verify())
 
         it('should return a valid play resolution', (done) => {
+            environment.apiUrl = mockProvider.mockService.baseUrl;
             let playService = TestBed.inject(PlayService);
             playService.revealPlay()
                 .subscribe(response => {
