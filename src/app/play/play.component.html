@@ -1,15 +1,11 @@
 <div class="container">
     <h3>Pick your next move...</h3>
     <div class="buttons">
-        <!--
-        <button mat-button color="primary" (click)="playRock()" style="background: url('../assets/images/rock.png'); background-size: contain"></button>
-        <button mat-button color="primary" (click)="playPaper()"style="background: url('../assets/images/paper.png'); background-size: contain"></button>
-        <button mat-button color="primary" (click)="playScissors()"style="background: url('../assets/images/scissors.png'); background-size: contain"></button>
-        -->
-        <app-playbutton move="ROCK" iconFilePath="../assets/images/rock.png" [afterMove]=afterMove [enabled]=enabled />
-        <app-playbutton move="PAPER" iconFilePath="../assets/images/paper.png" [afterMove]=afterMove
+        <app-playbutton [userId]=userId move="ROCK" iconFilePath="../assets/images/rock.png" [afterMove]=afterMove
             [enabled]=enabled />
-        <app-playbutton move="SCISSORS" iconFilePath="../assets/images/scissors.png" [afterMove]=afterMove
+        <app-playbutton [userId]=userId move="PAPER" iconFilePath="../assets/images/paper.png" [afterMove]=afterMove
             [enabled]=enabled />
+        <app-playbutton [userId]=userId move="SCISSORS" iconFilePath="../assets/images/scissors.png"
+            [afterMove]=afterMove [enabled]=enabled />
     </div>
 </div>

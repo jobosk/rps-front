@@ -35,10 +35,13 @@ describe('consumer contract testing', () => {
                 uponReceiving: 'a user request to pick a move for the next play',
                 withRequest: {
                     method: 'POST',
-                    path: '/play/ROCK'
+                    path: '/play/ROCK',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
                 },
                 willRespondWith: {
-                    status: 201
+                    status: 200
                 }
             });
         })
@@ -48,10 +51,8 @@ describe('consumer contract testing', () => {
         it('should accept the selected move by the user', (done) => {
             environment.apiUrl = mockProvider.mockService.baseUrl;
             let playService = TestBed.inject(PlayService);
-            playService.playMove(MoveCodeEnum.ROCK)
-                .subscribe(response => {
-                    done();
-                });
+            playService.playMove("00000000-0000-0000-0000-000000000000", MoveCodeEnum.ROCK)
+                .subscribe(() => done());
         });
     });
 
@@ -63,16 +64,21 @@ describe('consumer contract testing', () => {
                 uponReceiving: 'a request to resolve the current ongoing play',
                 withRequest: {
                     method: 'GET',
-                    path: '/play/reveal'
+                    path: '/play/reveal',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
                 },
                 willRespondWith: {
-                    status: 201,
+                    status: 200,
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: Matchers.eachLike({
-                        moveByUser: 'ROCK',
-                    }, { min: 1 })
+                    body: {
+                        moveByUser: Matchers.string('ROCK')
+                        , moveByMachine: Matchers.somethingLike('PAPER')
+                        , outcome: Matchers.somethingLike('USER_WINS')
+                    }
                 }
             });
         })
@@ -82,10 +88,8 @@ describe('consumer contract testing', () => {
         it('should return a valid play resolution', (done) => {
             environment.apiUrl = mockProvider.mockService.baseUrl;
             let playService = TestBed.inject(PlayService);
-            playService.revealPlay()
-                .subscribe(response => {
-                    done();
-                });
+            playService.revealPlay("00000000-0000-0000-0000-000000000000")
+                .subscribe(() => done());
         });
     });
 });

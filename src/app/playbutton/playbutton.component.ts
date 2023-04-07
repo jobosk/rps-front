@@ -9,7 +9,10 @@ import { PlayService } from '../play.service';
 export class PlaybuttonComponent {
 
   @Input()
-  move?: string;
+  userId!: string;
+
+  @Input()
+  move!: string;
 
   @Input()
   iconFilePath?: string;
@@ -25,7 +28,7 @@ export class PlaybuttonComponent {
 
   play(): void {
     if (this.move) {
-      this.service.playMove(this.move)
+      this.service.playMove(this.userId, this.move)
         .subscribe(() => this.runAfterMove());
     }
   }

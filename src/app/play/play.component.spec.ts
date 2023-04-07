@@ -48,6 +48,15 @@ describe('PlayComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have a unique ID', () => {
+    expect(component.userId).not.toBeUndefined();
+    expect(component.userId).not.toBeNull();
+    expect(component.userId).not.toBe(null);
+    expect(component.userId).not.toEqual(null);
+    //expect(component.userId.toString()).toMatch(/^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i);
+    expect(component.userId.toString()).toMatch(/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/i);
+  });
+
   it('should open a dialog when calling openDialog and keep the enabled flag to false during its lifetime', async () => {
     const dialogSpy = jest.spyOn(component.dialog, 'open');
     let dialogRef = component.openDialog(playResult);
@@ -63,6 +72,7 @@ describe('PlayComponent', () => {
     const componentSpy = jest.spyOn(component, 'openDialog');
     component.afterMove();
     expect(serviceSpy).toBeCalledTimes(1);
+    expect(serviceSpy).toBeCalledWith(component.userId);
     expect(componentSpy).toBeCalledTimes(1);
   });
 });
