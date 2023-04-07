@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PlayService } from '../play.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResolutionComponent } from '../resolution/resolution.component';
 import { PlayResult } from '../model/playResult';
 
@@ -13,10 +13,10 @@ export class PlayComponent {
 
   enabled?: boolean;
 
-  constructor(private service: PlayService, private dialog: MatDialog) {
+  constructor(public service: PlayService, public dialog: MatDialog) {
   }
 
-  openDialog(playResult: PlayResult): void {
+  openDialog(playResult: PlayResult): MatDialogRef<ResolutionComponent, any> {
     this.enabled = false;
     const dialogRef = this.dialog.open(ResolutionComponent, {
       data: playResult
@@ -24,6 +24,7 @@ export class PlayComponent {
     dialogRef.afterClosed().subscribe(() => {
       this.enabled = true;
     });
+    return dialogRef;
   }
 
   afterMove = () => {

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { PlayService } from '../play.service';
-import { MoveCodeEnum } from '../model/moveCodeEnum';
 
 @Component({
   selector: 'app-playbutton',
@@ -10,7 +9,7 @@ import { MoveCodeEnum } from '../model/moveCodeEnum';
 export class PlaybuttonComponent {
 
   @Input()
-  move!: string;
+  move?: string;
 
   @Input()
   iconFilePath?: string;
@@ -21,15 +20,19 @@ export class PlaybuttonComponent {
   @Input()
   enabled?: boolean;
 
-  constructor(private service: PlayService) {
+  constructor(public service: PlayService) {
   }
 
   play(): void {
-    this.service.playMove(this.move)
-      .subscribe(() => {
-        if (this.afterMove) {
-          this.afterMove();
-        }
-      });
+    if (this.move) {
+      this.service.playMove(this.move)
+        .subscribe(() => this.runAfterMove());
+    }
+  }
+
+  runAfterMove(): void {
+    if (this.afterMove) {
+      this.afterMove();
+    }
   }
 }
