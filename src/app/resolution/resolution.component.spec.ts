@@ -1,7 +1,6 @@
 import 'jest-preset-angular/setup-jest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ResolutionComponent } from './resolution.component';
 import { OutcomeCodeEnum } from '../model/outcomeCodeEnum';
 
@@ -22,7 +21,6 @@ describe('ResolutionComponent', () => {
       ],
       imports: [
         MatDialogModule,
-        MatProgressSpinnerModule
       ],
     })
       .compileComponents();
@@ -33,16 +31,6 @@ describe('ResolutionComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should keep the loading flag to true for 1 second on startup', () => {
-    jest.useFakeTimers();
-    component.ngOnInit();
-    expect(component.loading).toEqual(true);
-    setTimeout(() => {
-      expect(component.loading).toEqual(false);
-    }, 1000);
-    jest.runAllTimers();
   });
 
   it('should return specific responses when passing play results to humanizeResult', () => {

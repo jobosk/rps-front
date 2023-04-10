@@ -1,8 +1,5 @@
 <div class="popup">
-    <div *ngIf="loading">
-        <mat-spinner />
-    </div>
-    <div *ngIf="!loading && result" class="message">
+    <div *ngIf="result" class="message">
         <h1>{{humanizeResult(result.outcome)}}</h1>
         <p>Machine played {{result.moveByMachine}}.</p>
         <button mat-button color="primary" (click)="closeDialog()">{{getButtonMessage(result.outcome)}}</button>

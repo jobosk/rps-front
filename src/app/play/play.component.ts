@@ -3,6 +3,7 @@ import { PlayService } from '../play.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResolutionComponent } from '../resolution/resolution.component';
 import { PlayResult } from '../model/playResult';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-play',
@@ -13,7 +14,17 @@ export class PlayComponent {
 
   enabled?: boolean;
 
-  constructor(public service: PlayService, public dialog: MatDialog) {
+  constructor(public service: PlayService, public spinner: NgxSpinnerService, public dialog: MatDialog) {
+  }
+
+  afterMove = () => {
+    this.service.revealPlay().subscribe(response => {
+      this.spinner.show();
+      setTimeout(() => {
+        this.spinner.hide();
+        this.openDialog(response);
+      }, 1000);
+    });
   }
 
   openDialog(playResult: PlayResult): MatDialogRef<ResolutionComponent, any> {
@@ -25,11 +36,5 @@ export class PlayComponent {
       this.enabled = true;
     });
     return dialogRef;
-  }
-
-  afterMove = () => {
-    this.service.revealPlay().subscribe(response => {
-      this.openDialog(response);
-    });
   }
 }

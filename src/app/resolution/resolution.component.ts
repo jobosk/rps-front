@@ -10,18 +10,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ResolutionComponent {
 
-  loading = false;
   result?: PlayResult;
 
   constructor(public dialogRef: MatDialogRef<ResolutionComponent>, @Inject(MAT_DIALOG_DATA) public _result: PlayResult) {
     this.result = _result;
-  }
-
-  ngOnInit() {
-    this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
   }
 
   humanizeResult(result: string): string {
