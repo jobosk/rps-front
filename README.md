@@ -4,9 +4,9 @@ This is the front-end of a 'rock, paper & scissors' game.
 
 ## Related projects
 
-This project is paired with [its back-end](https://github.com/jobosk/rps-service). Be sure to check that out to setup both the infrastructure and back-end server required to run this app.
+This project is paired with [its back-end](https://github.com/jobosk/rps-service).
 
-Be sure to do that before proceeding.
+Be sure to check that out, to setup both the infrastructure and back-end server required to run this app, before proceeding.
 
 ## Running
 
