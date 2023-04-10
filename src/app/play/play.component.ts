@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { PlayService } from '../play.service';
-import { UUID } from 'angular2-uuid';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResolutionComponent } from '../resolution/resolution.component';
 import { PlayResult } from '../model/playResult';
@@ -13,10 +12,8 @@ import { PlayResult } from '../model/playResult';
 export class PlayComponent {
 
   enabled?: boolean;
-  userId: string;
 
   constructor(public service: PlayService, public dialog: MatDialog) {
-    this.userId = UUID.UUID();
   }
 
   openDialog(playResult: PlayResult): MatDialogRef<ResolutionComponent, any> {
@@ -31,7 +28,7 @@ export class PlayComponent {
   }
 
   afterMove = () => {
-    this.service.revealPlay(this.userId).subscribe(response => {
+    this.service.revealPlay().subscribe(response => {
       this.openDialog(response);
     });
   }

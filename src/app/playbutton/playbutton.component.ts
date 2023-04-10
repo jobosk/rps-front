@@ -9,9 +9,6 @@ import { PlayService } from '../play.service';
 export class PlaybuttonComponent {
 
   @Input()
-  userId!: string;
-
-  @Input()
   move!: string;
 
   @Input()
@@ -28,7 +25,7 @@ export class PlaybuttonComponent {
 
   play(): void {
     if (this.move) {
-      this.service.playMove(this.userId, this.move)
+      this.service.playMove(this.move)
         .subscribe(() => this.runAfterMove());
     }
   }

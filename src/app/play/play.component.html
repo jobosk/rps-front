@@ -1,11 +1,10 @@
 <div class="container">
     <h3>Pick your next move...</h3>
     <div class="buttons">
-        <app-playbutton [userId]=userId move="ROCK" iconFilePath="../assets/images/rock.png" [afterMove]=afterMove
+        <app-playbutton move="ROCK" iconFilePath="../assets/images/rock.png" [afterMove]=afterMove [enabled]=enabled />
+        <app-playbutton move="PAPER" iconFilePath="../assets/images/paper.png" [afterMove]=afterMove
             [enabled]=enabled />
-        <app-playbutton [userId]=userId move="PAPER" iconFilePath="../assets/images/paper.png" [afterMove]=afterMove
+        <app-playbutton move="SCISSORS" iconFilePath="../assets/images/scissors.png" [afterMove]=afterMove
             [enabled]=enabled />
-        <app-playbutton [userId]=userId move="SCISSORS" iconFilePath="../assets/images/scissors.png"
-            [afterMove]=afterMove [enabled]=enabled />
     </div>
 </div>

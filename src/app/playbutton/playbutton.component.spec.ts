@@ -39,7 +39,7 @@ describe('PlaybuttonComponent', () => {
     const componentSpy = jest.spyOn(component, 'runAfterMove');
     component.play();
     expect(serviceSpy).toBeCalledTimes(1);
-    expect(serviceSpy).toBeCalledWith(component.userId, MoveCodeEnum.ROCK);
+    expect(serviceSpy).toBeCalledWith(MoveCodeEnum.ROCK);
     expect(componentSpy).toBeCalledTimes(1);
   });
 });

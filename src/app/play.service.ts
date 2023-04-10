@@ -12,15 +12,15 @@ export class PlayService {
   constructor(private http: HttpClient) {
   }
 
-  playMove(userId: string, move: string): Observable<void> {
+  playMove(move: string): Observable<void> {
     let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('x-user-id', userId);
+    headers = headers.append('x-user-id', environment.userId);
     return this.http.post<any>(environment.apiUrl + '/play/' + move, {}, { headers: headers });
   }
 
-  revealPlay(userId: string): Observable<PlayResult> {
+  revealPlay(): Observable<PlayResult> {
     let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('x-user-id', userId);
+    headers = headers.append('x-user-id', environment.userId);
     return this.http.get<PlayResult>(environment.apiUrl + '/play/reveal', { headers: headers });
   }
 }

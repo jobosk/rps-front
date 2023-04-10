@@ -49,9 +49,10 @@ describe('consumer contract testing', () => {
         afterEach(() => mockProvider.verify())
 
         it('should accept the selected move by the user', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
             environment.apiUrl = mockProvider.mockService.baseUrl;
             let playService = TestBed.inject(PlayService);
-            playService.playMove("00000000-0000-0000-0000-000000000000", MoveCodeEnum.ROCK)
+            playService.playMove(MoveCodeEnum.ROCK)
                 .subscribe(() => done());
         });
     });
@@ -86,9 +87,10 @@ describe('consumer contract testing', () => {
         afterEach(() => mockProvider.verify())
 
         it('should return a valid play resolution', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
             environment.apiUrl = mockProvider.mockService.baseUrl;
             let playService = TestBed.inject(PlayService);
-            playService.revealPlay("00000000-0000-0000-0000-000000000000")
+            playService.revealPlay()
                 .subscribe(() => done());
         });
     });
