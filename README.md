@@ -2,7 +2,15 @@
 
 This is the front-end of a 'rock, paper & scissors' game.
 
-## Related projects
+## About
+
+This application aims to provide a UI for a game, consuming the endpoints in the following [API definition](https://github.com/jobosk/rps-api).
+
+The approach to develop of this service was API-first, which implies that both the front-end and the back-end that consume and provide this API respectively, could be implemented in parallel.
+
+In this case, that means we could use code generation tools like [Swagger Editor](https://editor.swagger.io/) to assist in the process of implementing consumers for those endpoints, and we could use tools like [Pact](https://pact.io/) to implement contract tests that validate such consumers against the API definition itself.
+
+## Before starting
 
 This project is paired with [its back-end](https://github.com/jobosk/rps-service).
 
