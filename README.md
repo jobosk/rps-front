@@ -34,7 +34,7 @@ Run `npm start` (or `ng serve`, if you have the [Angular CLI installed](https://
 Run `npm test` (or `ng test`, if you have the [Angular CLI installed](https://angular.io/cli) installed) to execute the unit tests with [Jest](https://jestjs.io).
 
 Once the consumer's contract test is executed, the contract itself will be stored as a JSON file in the /pacts directory.\
-To publish the contract in the local broker, so the back-end tests have a contract to validate against, the following command must be run:
+To publish the contract in the local broker, so the back-end contract tests have a consumer pact to validate against, the following command must be run:
 ```
 npm run publish-pacts
 ```
