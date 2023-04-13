@@ -12,7 +12,7 @@ In this case, that means we could use code generation tools like [Swagger Editor
 
 ## Requirements
 
-This project is paired with [its back-end](https://github.com/jobosk/rps-service). Be sure to check that out, to setup both the infrastructure and back-end server required to run this app, before proceeding.
+This project is paired with [its back-end](https://github.com/jobosk/rps-service), so be sure to check that out before proceeding, to setup both the infrastructure and the back-end server required to run this app.
 
 It also expects to nave both [Node and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
 
