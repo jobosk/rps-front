@@ -22,13 +22,13 @@ The Pact.io library used to run contact tests also incorporates several requirem
 
 > **Note:** To run this web application, the back-end server must be running. Follow [these instructions](https://github.com/jobosk/rps-service#installation) in order to do so.
 
-Run `npm start` (or `ng serve`) to run the project.
+Run `npm start` (or `ng serve`, if you have the [Angular CLI installed](https://angular.io/cli) installed) to run the project.
 
 ## Testing
 
 > **Note:** Among these tests there is a contract test that publishes a consumer pact in a local Pact Broker, so before running this particular test, one must follow [the instructions](https://github.com/jobosk/rps-service#testing) to setup the local testing environment from the back-end repository.
 
-Run `npm test` (or `ng test`) to execute the unit tests with [Jest](https://jestjs.io).
+Run `npm test` (or `ng test`, if you have the [Angular CLI installed](https://angular.io/cli) installed) to execute the unit tests with [Jest](https://jestjs.io).
 
 Once the consumer's contract test is executed, the contract itself will be stored as a JSON file in the /pacts directory.\
 To publish the contract in the local broker, so the back-end contract tests can be executed, the following command must be run:
