@@ -6,7 +6,7 @@ This is the front-end of a 'rock, paper & scissors' game.
 
 This application aims to provide a UI for a game, consuming the endpoints in the following [API definition](https://github.com/jobosk/rps-api).
 
-The approach to develop of this application was API-first, which implies that both the front-end and the back-end that consume and provide this API respectively, could be implemented in parallel.
+The approach to develop this application was API-first, which implies that both the front-end and the back-end that consume and provide this API respectively, could be implemented in parallel.
 
 In this case, that means we could use code generation tools like [Swagger Editor](https://editor.swagger.io/) to assist in the process of implementing consumers for those endpoints, and we could use tools like [Pact](https://pact.io/) to implement contract tests that validate such consumers against the API definition itself.
 
@@ -14,7 +14,7 @@ In this case, that means we could use code generation tools like [Swagger Editor
 
 This project is paired with [its back-end](https://github.com/jobosk/rps-service), so be sure to check that out before proceeding, to setup both the infrastructure and the back-end server required to run this app.
 
-It also expects to nave both [Node and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed, and run the following command to install all the required dependencies:
+It also expects to have both [Node and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed, and run the following command to install all the required dependencies:
 ```
 npm install
 ```
