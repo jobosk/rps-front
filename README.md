@@ -41,4 +41,4 @@ To publish the contract in the local broker, so the back-end contract tests have
 npm run publish-pacts
 ```
 
-> **Note:** If you are on a Windows environment and the previous command didn't work (probably due to your user permissions), you can use the *publish_pacts.bat* script to achieve the contract publication, provider you have Docker installed.
+> **Note:** If you are on a Windows environment and the previous command didn't work (probably due to your user permissions), you can use the *publish_pacts.bat* script to achieve the contract publication, provided you have Docker installed.
