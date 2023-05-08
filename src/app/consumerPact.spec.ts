@@ -117,11 +117,71 @@ describe('consumer contract testing', () => {
         });
     });
 
-    describe('the resolution of a play', () => {
+    describe('the action of picking "lizard" as the move for the next play', () => {
 
         beforeAll(() => {
             return mockProvider.addInteraction({
-                state: `user 00000000-0000-0000-0000-000000000000 previously selected rock`,
+                state: `user 00000000-0000-0000-0000-000000000000 doesn't have active plays`,
+                uponReceiving: 'a user request to play "lizard" next',
+                withRequest: {
+                    method: 'POST',
+                    path: '/play/LIZARD',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
+                },
+                willRespondWith: {
+                    status: 200
+                }
+            });
+        })
+
+        afterEach(() => mockProvider.verify())
+
+        it('should accept the selected move by the user', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
+            environment.apiUrl = mockProvider.mockService.baseUrl;
+            let playService = TestBed.inject(PlayService);
+            playService.playMove(MoveCodeEnum.LIZARD)
+                .subscribe(() => done());
+        });
+    });
+
+    describe('the action of picking "spock" as the move for the next play', () => {
+
+        beforeAll(() => {
+            return mockProvider.addInteraction({
+                state: `user 00000000-0000-0000-0000-000000000000 doesn't have active plays`,
+                uponReceiving: 'a user request to play "spock" next',
+                withRequest: {
+                    method: 'POST',
+                    path: '/play/SPOCK',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
+                },
+                willRespondWith: {
+                    status: 200
+                }
+            });
+        })
+
+        afterEach(() => mockProvider.verify())
+
+        it('should accept the selected move by the user', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
+            environment.apiUrl = mockProvider.mockService.baseUrl;
+            let playService = TestBed.inject(PlayService);
+            playService.playMove(MoveCodeEnum.SPOCK)
+                .subscribe(() => done());
+        });
+    });
+
+    describe('the resolution of a game where user played "rock"', () => {
+
+        beforeAll(() => {
+            return mockProvider.addInteraction({
+                state: `user 00000000-0000-0000-0000-000000000000 previously selected "rock"`,
                 uponReceiving: 'a request to resolve the current ongoing play',
                 withRequest: {
                     method: 'GET',
@@ -139,6 +199,158 @@ describe('consumer contract testing', () => {
                         moveByUser: Matchers.string('ROCK')
                         , moveByMachine: Matchers.somethingLike('PAPER')
                         , outcome: Matchers.somethingLike('USER_WINS')
+                    }
+                }
+            });
+        })
+
+        afterEach(() => mockProvider.verify())
+
+        it('should return a valid play resolution', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
+            environment.apiUrl = mockProvider.mockService.baseUrl;
+            let playService = TestBed.inject(PlayService);
+            playService.revealPlay()
+                .subscribe(() => done());
+        });
+    });
+
+    describe('the resolution of a game where user played "paper"', () => {
+
+        beforeAll(() => {
+            return mockProvider.addInteraction({
+                state: `user 00000000-0000-0000-0000-000000000000 previously selected "paper"`,
+                uponReceiving: 'a request to resolve the current ongoing play',
+                withRequest: {
+                    method: 'GET',
+                    path: '/play/reveal',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
+                },
+                willRespondWith: {
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: {
+                        moveByUser: Matchers.string('PAPER')
+                        , moveByMachine: Matchers.somethingLike('PAPER')
+                        , outcome: Matchers.somethingLike('TIE')
+                    }
+                }
+            });
+        })
+
+        afterEach(() => mockProvider.verify())
+
+        it('should return a valid play resolution', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
+            environment.apiUrl = mockProvider.mockService.baseUrl;
+            let playService = TestBed.inject(PlayService);
+            playService.revealPlay()
+                .subscribe(() => done());
+        });
+    });
+
+    describe('the resolution of a game where user played "scissors"', () => {
+
+        beforeAll(() => {
+            return mockProvider.addInteraction({
+                state: `user 00000000-0000-0000-0000-000000000000 previously selected "scissors"`,
+                uponReceiving: 'a request to resolve the current ongoing play',
+                withRequest: {
+                    method: 'GET',
+                    path: '/play/reveal',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
+                },
+                willRespondWith: {
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: {
+                        moveByUser: Matchers.string('SCISSORS')
+                        , moveByMachine: Matchers.somethingLike('ROCK')
+                        , outcome: Matchers.somethingLike('MACHINE_WINS')
+                    }
+                }
+            });
+        })
+
+        afterEach(() => mockProvider.verify())
+
+        it('should return a valid play resolution', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
+            environment.apiUrl = mockProvider.mockService.baseUrl;
+            let playService = TestBed.inject(PlayService);
+            playService.revealPlay()
+                .subscribe(() => done());
+        });
+    });
+
+    describe('the resolution of a game where user played "lizard"', () => {
+
+        beforeAll(() => {
+            return mockProvider.addInteraction({
+                state: `user 00000000-0000-0000-0000-000000000000 previously selected "lizard"`,
+                uponReceiving: 'a request to resolve the current ongoing play',
+                withRequest: {
+                    method: 'GET',
+                    path: '/play/reveal',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
+                },
+                willRespondWith: {
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: {
+                        moveByUser: Matchers.string('LIZARD')
+                        , moveByMachine: Matchers.somethingLike('SPOCK')
+                        , outcome: Matchers.somethingLike('USER_WINS')
+                    }
+                }
+            });
+        })
+
+        afterEach(() => mockProvider.verify())
+
+        it('should return a valid play resolution', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
+            environment.apiUrl = mockProvider.mockService.baseUrl;
+            let playService = TestBed.inject(PlayService);
+            playService.revealPlay()
+                .subscribe(() => done());
+        });
+    });
+
+    describe('the resolution of a game where user played "spock"', () => {
+
+        beforeAll(() => {
+            return mockProvider.addInteraction({
+                state: `user 00000000-0000-0000-0000-000000000000 previously selected "spock"`,
+                uponReceiving: 'a request to resolve the current ongoing play',
+                withRequest: {
+                    method: 'GET',
+                    path: '/play/reveal',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
+                },
+                willRespondWith: {
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: {
+                        moveByUser: Matchers.string('SPOCK')
+                        , moveByMachine: Matchers.somethingLike('PAPER')
+                        , outcome: Matchers.somethingLike('MACHINE_WINS')
                     }
                 }
             });
