@@ -112,7 +112,7 @@ describe('consumer contract testing', () => {
             environment.userId = "00000000-0000-0000-0000-000000000000";
             environment.apiUrl = mockProvider.mockService.baseUrl;
             let playService = TestBed.inject(PlayService);
-            playService.playMove(MoveCodeEnum.PAPER)
+            playService.playMove(MoveCodeEnum.SCISSORS)
                 .subscribe(() => done());
         });
     });
