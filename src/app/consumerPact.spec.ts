@@ -32,7 +32,7 @@ describe('consumer contract testing', () => {
         beforeAll(() => {
             return mockProvider.addInteraction({
                 state: `user 00000000-0000-0000-0000-000000000000 doesn't have active plays`,
-                uponReceiving: 'a user request to pick a move for the next play',
+                uponReceiving: 'a user request to play "rock" the next play',
                 withRequest: {
                     method: 'POST',
                     path: '/play/ROCK',
