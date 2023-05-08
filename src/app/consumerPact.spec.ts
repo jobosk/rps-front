@@ -27,12 +27,12 @@ describe('consumer contract testing', () => {
 
     afterAll(() => mockProvider.finalize())
 
-    describe('the action of picking a move for the next play', () => {
+    describe('the action of picking "rock" as the move for the next play', () => {
 
         beforeAll(() => {
             return mockProvider.addInteraction({
                 state: `user 00000000-0000-0000-0000-000000000000 doesn't have active plays`,
-                uponReceiving: 'a user request to play "rock" the next play',
+                uponReceiving: 'a user request to play "rock" next',
                 withRequest: {
                     method: 'POST',
                     path: '/play/ROCK',
@@ -53,6 +53,66 @@ describe('consumer contract testing', () => {
             environment.apiUrl = mockProvider.mockService.baseUrl;
             let playService = TestBed.inject(PlayService);
             playService.playMove(MoveCodeEnum.ROCK)
+                .subscribe(() => done());
+        });
+    });
+
+    describe('the action of picking "paper" as the move for the next play', () => {
+
+        beforeAll(() => {
+            return mockProvider.addInteraction({
+                state: `user 00000000-0000-0000-0000-000000000000 doesn't have active plays`,
+                uponReceiving: 'a user request to play "paper" next',
+                withRequest: {
+                    method: 'POST',
+                    path: '/play/PAPER',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
+                },
+                willRespondWith: {
+                    status: 200
+                }
+            });
+        })
+
+        afterEach(() => mockProvider.verify())
+
+        it('should accept the selected move by the user', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
+            environment.apiUrl = mockProvider.mockService.baseUrl;
+            let playService = TestBed.inject(PlayService);
+            playService.playMove(MoveCodeEnum.PAPER)
+                .subscribe(() => done());
+        });
+    });
+
+    describe('the action of picking "scissors" as the move for the next play', () => {
+
+        beforeAll(() => {
+            return mockProvider.addInteraction({
+                state: `user 00000000-0000-0000-0000-000000000000 doesn't have active plays`,
+                uponReceiving: 'a user request to play "scissors" next',
+                withRequest: {
+                    method: 'POST',
+                    path: '/play/SCISSORS',
+                    headers: {
+                        "x-user-id": "00000000-0000-0000-0000-000000000000"
+                    }
+                },
+                willRespondWith: {
+                    status: 200
+                }
+            });
+        })
+
+        afterEach(() => mockProvider.verify())
+
+        it('should accept the selected move by the user', (done) => {
+            environment.userId = "00000000-0000-0000-0000-000000000000";
+            environment.apiUrl = mockProvider.mockService.baseUrl;
+            let playService = TestBed.inject(PlayService);
+            playService.playMove(MoveCodeEnum.PAPER)
                 .subscribe(() => done());
         });
     });
