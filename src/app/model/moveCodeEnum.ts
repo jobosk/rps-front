@@ -13,10 +13,12 @@
 /**
  * The codes of the different possible moves to play
  */
-export type MoveCodeEnum = 'ROCK' | 'PAPER' | 'SCISSORS';
+export type MoveCodeEnum = 'ROCK' | 'PAPER' | 'SCISSORS' | 'LIZARD' | 'SPOCK';
 
 export const MoveCodeEnum = {
     ROCK: 'ROCK' as MoveCodeEnum,
     PAPER: 'PAPER' as MoveCodeEnum,
-    SCISSORS: 'SCISSORS' as MoveCodeEnum
+    SCISSORS: 'SCISSORS' as MoveCodeEnum,
+    LIZARD: 'LIZARD' as MoveCodeEnum,
+    SPOCK: 'SPOCK' as MoveCodeEnum
 };
